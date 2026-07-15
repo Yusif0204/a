@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Roboto, Arial, sans-serif; background-color: #ffffff; padding: 20px; }
+        .container { max-width: 650px; margin: 0 auto; }
+        
+        .header-image { width: 100%; margin-bottom: 20px; border-radius: 8px; }
+    
+        /* Убрали border (обводку) у карточек */
+        .card { background: white; padding: 24px; margin-bottom: 12px; border-radius: 8px; border: none; }
+        
+        h1 { font-size: 32px; font-weight: 400; margin: 0 0 10px 0; }
+        .desc { margin-bottom: 20px; color: #202124; }
+        label { display: block; font-weight: 600; margin-bottom: 15px; }
+        
+        /* Убрали красную линию под полями ввода, оставили стандартную или можно тоже убрать */
+        input[type="text"], input[type="tel"], input[type="email"] { 
+            width: 100%; 
+            border: 1px solid #ccc; /* Светлая серая рамка для полей */
+            padding: 10px; 
+            outline: none; 
+            border-radius: 4px;
+        }
+        
+        .radio-item, .checkbox-item { margin: 10px 0; }
+        
+        button { background-color: #d93025; color: white; padding: 10px 24px; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; }
+        button:hover { background-color: #b3261d; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="/static/banner.jpg" alt="Header" width="642" height="162.19">
+
+        <div class="card">
+            <h1>MKOB subyektləri üçün sorğu forması</h1>
+            <p class="desc">Bu forma MKOB subyektləri üçün sığorta ehtiyaclarını müəyyən edilməsi üçün nəzərdə tutulub.</p>
+        </div>
+        
+        <form action="/submit" method="POST">
+            <div class="card">
+                <label>Müəssisənizin adı *</label>
+                <input type="text" name="name" required>
+            </div>
+            
+            <div class="card">
+                <label>Müəssisənizin fəaliyyət sahəsi *</label>
+                <div class="radio-item"><input type="radio" name="area" value="ticaret" required> Ticarət</div>
+                <div class="radio-item"><input type="radio" name="area" value="İctimai iaşə"> İctimai iaşə</div>
+                <div class="radio-item"><input type="radio" name="area" value="Sənaye"> Sənaye</div>
+                <div class="radio-item"><input type="radio" name="area" value="Tikinti"> Tikinti</div>
+                <div class="radio-item"><input type="radio" name="area" value="Nəqliyyat"> Nəqliyyat</div>
+                <div class="radio-item"><input type="radio" name="area" value="Turizm"> Turizm</div>
+                <div class="radio-item"><input type="radio" name="area" value="İT sahəsi"> İT sahəsi</div>
+                <div class="radio-item"><input type="radio" name="area" value="Kənd təsərrüfatı"> Kənd təsərrüfatı</div>
+                <div class="radio-item">
+                    <input type="radio" name="area" value="other" id="radioOther"> 
+                    Digər: 
+                    <input type="text" name="area_other" oninput="document.getElementById('radioOther').checked = true;" style="border: none; border-bottom: 1px solid #d93025; width: 200px;">
+                </div>
+            </div>
+            <div class="card">
+                <label>Hansı risklərdən təminat almaq sizin üçün maraqlı olar?</label>
+                <div class="checkbox-item"><input type="checkbox" name="risks" value="Yanğın"> Yanğın</div>
+                <div class="checkbox-item"><input type="checkbox" name="risks" value="Təbii fəlakətlər"> Təbii fəlakətlər (sel, daşqın, zəlzələ və s.)</div>
+                <div class="checkbox-item"><input type="checkbox" name="risks" value="Məsuliyyət"> Üçüncü tərəfə zərərin vurulması (məsuliyyət)</div>
+                <div class="checkbox-item"><input type="checkbox" name="risks" value="Fasilə"> Müəssisənizin fəaliyyətində fasilə</div>
+                <div class="checkbox-item"><input type="checkbox" name="risks" value="Kənd təsərrüfatı"> Kənd təsərrüfatı riskləri (dolu, tufan, ziyanvericilər, xəstəlik və s.)</div>
+                <div class="checkbox-item">
+                    <input type="checkbox" name="risks" value="other" id="checkOther"> 
+                    Digər: 
+                    <input type="text" name="risks_other" oninput="document.getElementById('checkOther').checked = true;" style="border: none; border-bottom: 1px solid #d93025; width: 200px;">
+                </div>
+            </div>
+            <div class="card">
+                <label>Müəssisədə çalışan işçilərin sayı</label>
+                <div class="radio-item"><input type="radio" name="employees" value="1-10"> 1–10</div>
+                <div class="radio-item"><input type="radio" name="employees" value="11-50"> 11–50</div>
+                <div class="radio-item"><input type="radio" name="employees" value="51-100"> 51–100</div>
+                <div class="radio-item"><input type="radio" name="employees" value="100+"> 100+</div>
+            </div>
+
+            <div class="card">
+                <label>Hazırda sığorta təminatınız varmı?</label>
+                <div class="radio-item"><input type="radio" name="insurance" value="Bəli"> Bəli</div>
+                <div class="radio-item"><input type="radio" name="insurance" value="Xeyr"> Xeyr</div>
+            </div>
+
+            <div class="card">
+                <label>Əlaqə nömrəniz *</label>
+                <input type="tel" name="phone" required>
+            </div>
+            <div class="card">
+                <label>E-mail ünvanınız *</label>
+                <input type="email" name="email" required>
+            </div>
+            
+            <button type="submit">Отправить</button>
+        </form>
+    </div>
+</body>
+</html>
